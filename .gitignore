@@ -65,4 +65,5 @@ application.log.json
 app.log.json
 
 environment.sh
+.vscode
 
