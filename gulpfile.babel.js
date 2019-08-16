@@ -18,7 +18,7 @@ const plugins = loadPlugins(),
         dist: 'app/static/',
         templates: 'app/templates/',
         npm: 'node_modules/',
-        template: 'node_modules/govuk_template_jinja/',
+        template: 'node_modules/@cdssnc/cds_template_jinja/',
         toolkit: 'node_modules/govuk_frontend_toolkit/'
     };
 
@@ -27,11 +27,11 @@ const plugins = loadPlugins(),
 
 // Move GOV.UK template resources
 
-gulp.task('copy:govuk_template:template', () => gulp.src(paths.template + 'views/layouts/govuk_template.html')
+gulp.task('copy:notification_template:template', () => gulp.src(paths.template + 'views/layouts/notification_template.html')
   .pipe(gulp.dest(paths.templates))
 );
 
-gulp.task('copy:govuk_template:css', () => gulp.src(paths.template + 'assets/stylesheets/**/*.css')
+gulp.task('copy:notification_template:css', () => gulp.src(paths.template + 'assets/stylesheets/**/*.css')
   .pipe(plugins.sass({
     outputStyle: 'compressed'
   }))
@@ -42,16 +42,16 @@ gulp.task('copy:govuk_template:css', () => gulp.src(paths.template + 'assets/sty
   .pipe(gulp.dest(paths.dist + 'stylesheets/'))
 );
 
-gulp.task('copy:govuk_template:js', () => gulp.src(paths.template + 'assets/javascripts/**/*.js')
+gulp.task('copy:notification_template:js', () => gulp.src(paths.template + 'assets/javascripts/**/*.js')
   .pipe(plugins.uglify())
   .pipe(gulp.dest(paths.dist + 'javascripts/'))
 );
 
-gulp.task('copy:govuk_template:images', () => gulp.src(paths.template + 'assets/stylesheets/images/**/*')
+gulp.task('copy:notification_template:images', () => gulp.src(paths.template + 'assets/stylesheets/images/**/*')
   .pipe(gulp.dest(paths.dist + 'images/'))
 );
 
-gulp.task('copy:govuk_template:fonts', () => gulp.src(paths.template + 'assets/stylesheets/fonts/**/*')
+gulp.task('copy:notification_template:fonts', () => gulp.src(paths.template + 'assets/stylesheets/fonts/**/*')
   .pipe(gulp.dest(paths.dist + 'fonts/'))
 );
 
@@ -117,7 +117,7 @@ gulp.task('images', () => gulp
   .pipe(gulp.dest(paths.dist + 'images/'))
 );
 
-gulp.task('copy:govuk_template:error_page', () => gulp.src(paths.src + 'error_pages/**/*')
+gulp.task('copy:notification_template:error_page', () => gulp.src(paths.src + 'error_pages/**/*')
   .pipe(gulp.dest(paths.dist + 'error_pages/'))
 );
 
@@ -155,12 +155,12 @@ gulp.task('lint',
 // Default: compile everything
 gulp.task('default',
   [
-    'copy:govuk_template:template',
-    'copy:govuk_template:images',
-    'copy:govuk_template:fonts',
-    'copy:govuk_template:css',
-    'copy:govuk_template:js',
-    'copy:govuk_template:error_page',
+    'copy:notification_template:template',
+    'copy:notification_template:images',
+    'copy:notification_template:fonts',
+    'copy:notification_template:css',
+    'copy:notification_template:js',
+    'copy:notification_template:error_page',
     'javascripts',
     'sass',
     'images'

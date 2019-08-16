@@ -1,10 +1,27 @@
 import os
+import sys
+import traceback
 
-bind = "0.0.0.0:{}".format(os.getenv("PORT"))
-
-workers = 10
-
+workers = 4
 worker_class = "eventlet"
-worker_connections = 1000
+worker_connections = 256
+bind = "0.0.0.0:{}".format(os.getenv("PORT"))
+accesslog = '-'
 
-errorlog = "/home/vcap/logs/gunicorn_error.log"
+
+def on_starting(server):
+    server.log.info("Starting Document Download Frontend")
+
+
+def worker_abort(worker):
+    worker.log.info("worker received ABORT {}".format(worker.pid))
+    for threadId, stack in sys._current_frames().items():
+        worker.log.error(''.join(traceback.format_stack(stack)))
+
+
+def on_exit(server):
+    server.log.info("Stopping Document Download Frontend")
+
+
+def worker_int(worker):
+    worker.log.info("worker: received SIGINT {}".format(worker.pid))

@@ -9,19 +9,20 @@ gunicorn==19.7.1  # pyup: ignore, >19.8 breaks eventlet patching
 whitenoise==4.1.2  #manages static assets
 eventlet==0.24.1
 
+python-dotenv==0.10.3
 notifications-python-client==5.3.0
 
 # PaaS
 awscli-cwlogs>=1.4,<1.5
 
-git+https://github.com/alphagov/notifications-utils.git@32.0.1#egg=notifications-utils==32.0.1
+git+https://github.com/cds-snc/notifier-utils.git@34.0.11#egg=notifications-utils==34.0.11
 
 ## The following requirements were added by pip freeze:
-awscli==1.16.177
+awscli==1.16.218
 bleach==3.1.0
 boto3==1.6.16
-botocore==1.12.167
-certifi==2019.3.9
+botocore==1.12.208
+certifi==2019.6.16
 chardet==3.0.4
 Click==7.0
 colorama==0.3.9
@@ -40,14 +41,14 @@ mistune==0.8.4
 monotonic==1.5
 orderedset==2.0.1
 phonenumbers==8.10.13
-pyasn1==0.4.5
+pyasn1==0.4.6
 PyJWT==1.7.1
 PyPDF2==1.26.0
 python-dateutil==2.8.0
 python-json-logger==0.1.11
-pytz==2018.9
-PyYAML==3.13
-redis==3.2.1
+pytz==2019.1
+PyYAML==4.2b1
+redis==3.3.7
 requests==2.22.0
 rsa==3.4.2
 s3transfer==0.2.1
@@ -56,5 +57,5 @@ smartypants==2.0.1
 statsd==3.3.0
 urllib3==1.25.3
 webencodings==0.5.1
-Werkzeug==0.15.4
+Werkzeug==0.15.5
 WTForms==2.2.1

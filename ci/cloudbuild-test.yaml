@@ -1,0 +1,16 @@
+steps:
+- name: "gcr.io/cloud-builders/gcloud"
+  args:
+    - kms
+    - decrypt
+    - --ciphertext-file=.env.enc
+    - --plaintext-file=.env
+    - --location=global
+    - --project=$PROJECT_ID
+    - --keyring=deploy
+    - --key=env
+- name: "gcr.io/$PROJECT_ID/testing-env-admin:latest"
+  entrypoint: /bin/sh
+  args: ["-c", "/workspace/scripts/bootstrap.sh && make test"]
+options:
+ machineType: 'N1_HIGHCPU_8'
