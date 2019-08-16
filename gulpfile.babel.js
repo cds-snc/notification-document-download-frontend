@@ -18,7 +18,7 @@ const plugins = loadPlugins(),
         dist: 'app/static/',
         templates: 'app/templates/',
         npm: 'node_modules/',
-        template: 'node_modules/notification_template_jinja/',
+        template: 'node_modules/@cdssnc/cds_template_jinja/',
         toolkit: 'node_modules/govuk_frontend_toolkit/'
     };
 
