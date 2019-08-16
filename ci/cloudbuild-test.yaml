@@ -11,6 +11,6 @@ steps:
     - --key=env
 - name: "gcr.io/$PROJECT_ID/testing-env-admin:latest"
   entrypoint: /bin/sh
-  args: ["-c", "pip3 install -r requirements-dev.txt && make test"]
+  args: ["-c", "make bootstrap && make test"]
 options:
  machineType: 'N1_HIGHCPU_8'
