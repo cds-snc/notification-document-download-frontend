@@ -13,7 +13,7 @@
   "author": "Government Digital Service",
   "license": "MIT",
   "dependencies": {
-    "@cdssnc/cds_template_jinja": "0.0.3",
+    "@cdssnc/cds_template_jinja": "0.0.7",
     "babel-core": "6.26.0",
     "babel-preset-es2015": "6.24.1",
     "diff-dom": "2.3.1",
