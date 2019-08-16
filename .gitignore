@@ -67,3 +67,4 @@ app.log.json
 environment.sh
 .vscode
 
+.DS_Store
