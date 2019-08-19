@@ -1,4 +1,4 @@
-SHELL := /bin/bash
+SHELL := /bin/sh
 
 GIT_COMMIT ?= $(shell git rev-parse HEAD)
 
