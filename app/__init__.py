@@ -1,7 +1,8 @@
 from functools import partial
 
-from flask import current_app, make_response, render_template
+from flask import current_app, make_response, render_template, request, session
 from flask.globals import _lookup_req_object
+from flask_babel import Babel
 from flask_wtf import CSRFProtect
 from flask_wtf.csrf import CSRFError
 from notifications_utils import logging, request_helper
@@ -24,6 +25,11 @@ service_api_client = ServiceApiClient()
 # The current service attached to the request stack.
 current_service = LocalProxy(partial(_lookup_req_object, 'service'))
 
+def get_current_locale(application):
+    requestLang = request.accept_languages.best_match(application.config['LANGUAGES'])
+    lang = session.get("userlang", requestLang)
+    session["userlang"] = lang
+    return lang
 
 class Base64UUIDConverter(BaseConverter):
     def to_python(self, value):
@@ -43,6 +49,12 @@ def create_app(application):
     application.config.from_object(configs[application.env])
 
     application.url_map.converters['base64_uuid'] = Base64UUIDConverter
+
+    #babel = Babel(application)
+
+    #@babel.localeselector
+    #def get_locale():
+    #    return get_current_locale(application)
 
     init_app(application)
     statsd_client.init_app(application)

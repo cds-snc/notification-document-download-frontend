@@ -28,6 +28,8 @@ class Config(object):
     # needs to refer to notify for utils
     NOTIFY_LOG_PATH = os.getenv("NOTIFY_LOG_PATH", "application.log")
 
+    LANGUAGES = ['en', 'fr']
+
 
 class Development(Config):
     DEBUG = True
