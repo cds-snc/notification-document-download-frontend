@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-19 11:34-0400\n"
+"POT-Creation-Date: 2019-08-19 12:29-0400\n"
 "PO-Revision-Date: 2019-08-19 11:37-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -18,7 +18,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
+#: app/templates/views/download.html:4
+msgid "Download your file"
+msgstr ""
+
+#: app/templates/views/download.html:6
+msgid ""
+"Save your file somewhere you can find it. You may need to print it or "
+"show it to someone later."
+msgstr ""
+
+#: app/templates/views/download.html:8
+msgid "Check the email that"
+msgstr ""
+
+#: app/templates/views/download.html:8
+msgid "sent you for more information."
+msgstr ""
+
+#: app/templates/views/download.html:10
+msgid "Download this file to your device"
+msgstr ""
+
+#: app/templates/views/download.html:13
+msgid "If you have any questions,"
+msgstr ""
+
+#: app/templates/views/download.html:15 app/templates/views/index.html:10
+msgid "contact"
+msgstr ""
+
+#: app/templates/views/download.html:17 app/templates/views/index.html:12
+msgid "email"
+msgstr ""
+
+#: app/templates/views/download.html:19 app/templates/views/index.html:14
+msgid "call"
+msgstr ""
+
 #: app/templates/views/index.html:4
 msgid "You have a file to download"
+msgstr ""
+
+#: app/templates/views/index.html:5
+msgid "sent you a file to download."
+msgstr ""
+
+#: app/templates/views/index.html:8
+msgid "If you’re not sure why you’ve been sent a file, or you have any questions,"
+msgstr ""
+
+#: app/templates/views/index.html:18
+msgid "Continue"
 msgstr ""
 
