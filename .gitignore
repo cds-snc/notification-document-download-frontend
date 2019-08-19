@@ -51,6 +51,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Translations
+*.pot
+
 # Frontend dependencies and compiled assets
 app/assets/stylesheets/govuk_template/.sass-cache/
 .sass-cache/

@@ -50,11 +50,11 @@ def create_app(application):
 
     application.url_map.converters['base64_uuid'] = Base64UUIDConverter
 
-    #babel = Babel(application)
+    babel = Babel(application)
 
-    #@babel.localeselector
-    #def get_locale():
-    #    return get_current_locale(application)
+    @babel.localeselector
+    def get_locale():
+        return get_current_locale(application)
 
     init_app(application)
     statsd_client.init_app(application)
