@@ -55,42 +55,6 @@ gulp.task('copy:notification_template:fonts', () => gulp.src(paths.template + 'a
   .pipe(gulp.dest(paths.dist + 'fonts/'))
 );
 
-gulp.task('javascripts', () => gulp
-  .src([
-    paths.toolkit + 'javascripts/govuk/modules.js',
-    paths.toolkit + 'javascripts/govuk/stop-scrolling-at-footer.js',
-    paths.toolkit + 'javascripts/govuk/stick-at-top-when-scrolling.js',
-    paths.src + 'javascripts/detailsPolyfill.js',
-    paths.src + 'javascripts/apiKey.js',
-    paths.src + 'javascripts/autofocus.js',
-    paths.src + 'javascripts/highlightTags.js',
-    paths.src + 'javascripts/fileUpload.js',
-    paths.src + 'javascripts/expandCollapse.js',
-    paths.src + 'javascripts/radioSelect.js',
-    paths.src + 'javascripts/updateContent.js',
-    paths.src + 'javascripts/listEntry.js',
-    paths.src + 'javascripts/liveSearch.js',
-    paths.src + 'javascripts/errorTracking.js',
-    paths.src + 'javascripts/preventDuplicateFormSubmissions.js',
-    paths.src + 'javascripts/fullscreenTable.js',
-    paths.src + 'javascripts/main.js'
-  ])
-  .pipe(plugins.prettyerror())
-  .pipe(plugins.babel({
-    presets: ['es2015']
-  }))
-  .pipe(plugins.addSrc.prepend([
-    paths.npm + 'hogan.js/dist/hogan-3.0.2.js',
-    paths.npm + 'jquery/dist/jquery.min.js',
-    paths.npm + 'query-command-supported/dist/queryCommandSupported.min.js',
-    paths.npm + 'diff-dom/diffDOM.js',
-    paths.npm + 'timeago/jquery.timeago.js'
-  ]))
-  .pipe(plugins.uglify())
-  .pipe(plugins.concat('all.js'))
-  .pipe(gulp.dest(paths.dist + 'javascripts/'))
-);
-
 gulp.task('sass', () => gulp
   .src(paths.src + '/stylesheets/main*.scss')
   .pipe(plugins.prettyerror())
@@ -161,7 +125,6 @@ gulp.task('default',
     'copy:notification_template:css',
     'copy:notification_template:js',
     'copy:notification_template:error_page',
-    'javascripts',
     'sass',
     'images'
   ]
