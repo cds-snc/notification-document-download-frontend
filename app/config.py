@@ -12,6 +12,7 @@ class Config(object):
     ADMIN_CLIENT_USER_NAME = os.environ.get('ADMIN_CLIENT_USER_NAME', 'notify-admin')
 
     API_HOST_NAME = os.environ.get('API_HOST_NAME', 'http://localhost:6011')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
     CHECK_PROXY_HEADER = os.environ.get('CHECK_PROXY_HEADER', False)
 
@@ -28,10 +29,12 @@ class Config(object):
     # needs to refer to notify for utils
     NOTIFY_LOG_PATH = os.getenv("NOTIFY_LOG_PATH", "application.log")
 
+    LANGUAGES = ['en', 'fr']
+
 
 class Development(Config):
     DEBUG = True
-
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-notification-document-downloader-frontend-secret-key')
 
 class Test(Development):
     TESTING = True
