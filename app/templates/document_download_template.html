@@ -1,4 +1,5 @@
 {% extends "notification_template.html" %}
+{% from "components/language_button.html" import language_button %}
 
 {% block head %}
   <!--[if gt IE 8]><!-->
@@ -21,7 +22,11 @@
 {% endblock %}
 
 {% block page_title %}
-	Notification - Document download
+  Notification - Document download
+{% endblock %}
+
+{% block inside_header %}
+  {{ language_button() }}
 {% endblock %}
 
 {% block content %}

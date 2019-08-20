@@ -1,0 +1,42 @@
+header {
+  .lang-button {
+    float: right;
+    a {
+
+      @include bold-19;
+      display: block;
+      padding: 0 ;
+      margin: 0 0 $gutter 0;
+  
+      &:link,
+      &:visited {
+        color: $white;
+      }
+  
+      &:hover,
+      &:active {
+        background-color: $link-hover-colour;
+        outline: 10px solid $link-hover-colour;
+      }
+  
+      &:active,
+      &:focus {
+        background-color: $yellow;
+        outline: 10px solid $yellow;
+      }
+  
+    }
+  
+    .greyed-out-step {
+  
+      $opacity: 0.6;
+  
+      opacity: $opacity;
+  
+      @include ie-lte(8) {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + ($opacity * 100) + ")";
+      }
+  
+    }
+  }
+}
