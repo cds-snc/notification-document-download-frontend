@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-19 12:29-0400\n"
+"POT-Creation-Date: 2019-08-20 14:03-0400\n"
 "PO-Revision-Date: 2019-08-19 11:37-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -17,6 +17,50 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
+
+#: app/templates/error/400.html:2
+msgid "Bad Request"
+msgstr ""
+
+#: app/templates/error/401.html:2
+msgid "Unauthorized"
+msgstr ""
+
+#: app/templates/error/401.html:7
+msgid "You are not authorized to see this page."
+msgstr ""
+
+#: app/templates/error/403.html:2
+msgid "Forbidden"
+msgstr ""
+
+#: app/templates/error/403.html:10
+msgid "You do not have permission to view this page."
+msgstr ""
+
+#: app/templates/error/410.html:2
+msgid "Page not found"
+msgstr ""
+
+#: app/templates/error/410.html:7
+msgid "Page could not be found"
+msgstr ""
+
+#: app/templates/error/410.html:10
+msgid "Check you’ve entered the correct web address."
+msgstr ""
+
+#: app/templates/error/500.html:2
+msgid "Server error"
+msgstr ""
+
+#: app/templates/error/500.html:7
+msgid "Sorry, we’re experiencing technical difficulties"
+msgstr ""
+
+#: app/templates/error/500.html:9
+msgid "Try again later."
+msgstr ""
 
 #: app/templates/views/download.html:4
 msgid "Download your file"
