@@ -36,6 +36,7 @@ class Development(Config):
     DEBUG = True
     SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-notification-document-downloader-frontend-secret-key')
 
+
 class Test(Development):
     TESTING = True
 

@@ -25,11 +25,13 @@ service_api_client = ServiceApiClient()
 # The current service attached to the request stack.
 current_service = LocalProxy(partial(_lookup_req_object, 'service'))
 
+
 def get_current_locale(application):
     requestLang = request.accept_languages.best_match(application.config['LANGUAGES'])
     lang = session.get("userlang", requestLang)
     session["userlang"] = lang
     return lang
+
 
 class Base64UUIDConverter(BaseConverter):
     def to_python(self, value):
