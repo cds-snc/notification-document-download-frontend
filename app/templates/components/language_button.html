@@ -1,0 +1,12 @@
+{% macro language_button() %}
+<div class="lang-button">
+  <a href="{{ url_for('main.set_lang')}}?from={{request.path}}?key={{ request.args.get('key') }}">
+    {% if session["userlang"] == "en" %}
+      Français
+    {% else %}
+      English
+    {% endif %}
+  </a>
+</div>
+
+{% endmacro %}
