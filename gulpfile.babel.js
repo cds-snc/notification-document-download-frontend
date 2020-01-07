@@ -112,13 +112,11 @@ gulp.task('lint:js', () => gulp
     .pipe(plugins.jshint.reporter('fail'))
 );
 
-gulp.task('lint',
-  ['lint:sass', 'lint:js']
-);
+gulp.task('lint', gulp.series('lint:sass', 'lint:js'));
 
 // Default: compile everything
 gulp.task('default',
-  [
+  gulp.series(
     'copy:notification_template:template',
     'copy:notification_template:images',
     'copy:notification_template:fonts',
@@ -127,11 +125,11 @@ gulp.task('default',
     'copy:notification_template:error_page',
     'sass',
     'images'
-  ]
+  )
 );
 
 // Optional: recompile on changes
 gulp.task('watch',
-    ['default', 'watchForChanges']
+  gulp.series('default', 'watchForChanges')
 );
 
