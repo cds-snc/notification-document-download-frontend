@@ -2,18 +2,18 @@
 # with package version changes made in requirements-app.txt
 
 Flask==1.0.3
-Flask-WTF==0.14.2
+Flask-WTF==0.14.3
 
-gunicorn==19.7.1  # pyup: ignore, >19.8 breaks eventlet patching
+gunicorn==20.0.4
 whitenoise==4.1.2  #manages static assets
-eventlet==0.24.1
+eventlet==0.25.1
 
-Babel==2.7.0
-Flask-Babel==0.12.2
+Babel==2.8.0
+Flask-Babel==1.0.0
 python-dotenv==0.10.3
-notifications-python-client==5.3.0
+notifications-python-client==5.5.1
 
 # PaaS
 awscli-cwlogs>=1.4,<1.5
 
-git+https://github.com/cds-snc/notifier-utils.git@34.0.11#egg=notifications-utils==34.0.11
+git+https://github.com/cds-snc/notifier-utils.git@39.0.1#egg=notifications-utils==39.0.1
