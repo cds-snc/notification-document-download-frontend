@@ -8,7 +8,9 @@
   "scripts": {
     "test": "gulp lint",
     "build": "gulp",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "Government Digital Service",
   "license": "MIT",
@@ -26,7 +28,8 @@
     "gulp-include": "2.4.1",
     "gulp-load-plugins": "2.0.2",
     "gulp-sass": "4.0.2",
-    "gulp-uglify": "3.0.2"
+    "gulp-uglify": "3.0.2",
+    "snyk": "^1.305.1"
   },
   "devDependencies": {
     "gulp-css-url-adjuster": "0.2.3",
@@ -35,5 +38,6 @@
     "gulp-sass-lint": "1.4.0",
     "jshint": "2.11.0",
     "jshint-stylish": "2.2.1"
-  }
+  },
+  "snyk": true
 }
