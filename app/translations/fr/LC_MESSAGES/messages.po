@@ -65,7 +65,7 @@ msgstr "Désolé, nous avons des difficultés techniques"
 
 #: app/templates/error/500.html:9
 msgid "Try again later."
-msgstr "Essayez plus tard plus"
+msgstr "Réessayez plus tard plus."
 
 #: app/templates/views/download.html:4
 msgid "Download your file"
