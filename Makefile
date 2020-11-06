@@ -9,8 +9,6 @@ run:
 .PHONY: test
 test:
 	find . -name \*.pyc -delete
-	npm install
-	npm run build
 	./scripts/run_tests.sh
 
 .PHONY: build
