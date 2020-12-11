@@ -6,7 +6,7 @@ Flask-WTF==0.14.3
 
 gunicorn==20.0.4
 whitenoise==4.1.2  #manages static assets
-eventlet==0.25.1
+eventlet==0.28.0
 
 Babel==2.8.0
 Flask-Babel==1.0.0
@@ -14,6 +14,6 @@ python-dotenv==0.10.3
 notifications-python-client==5.5.1
 
 # PaaS
-awscli-cwlogs>=1.4,<1.5
+awscli-cwlogs>=1.4.6,<1.5
 
-git+https://github.com/cds-snc/notifier-utils.git@39.0.1#egg=notifications-utils==39.0.1
+git+https://github.com/cds-snc/notifier-utils.git@43.2.2#egg=notifications-utils
