@@ -17,3 +17,4 @@ notifications-python-client==5.5.1
 awscli-cwlogs>=1.4.6,<1.5
 
 git+https://github.com/cds-snc/notifier-utils.git@43.2.2#egg=notifications-utils
+rsa>=4.7 # not directly required, pinned by Snyk to avoid a vulnerability
