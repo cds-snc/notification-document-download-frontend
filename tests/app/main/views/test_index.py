@@ -64,6 +64,32 @@ def test_landing_page_creates_link_for_document(client, mocker, sample_service):
     )
 
 
+def test_landing_page_creates_link_for_document_with_filename(client, mocker, sample_service):
+    mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
+    service_id = uuid4()
+    document_id = uuid4()
+    response = client.get(
+        url_for(
+            'main.landing',
+            service_id=service_id,
+            document_id=document_id,
+            key='1234',
+            filename='custom_file.pdf',
+        )
+    )
+
+    assert response.status_code == 200
+    page = BeautifulSoup(response.data.decode('utf-8'), 'html.parser')
+
+    assert page.find('a', string="Continue")['href'] == url_for(
+        'main.download_document',
+        service_id=service_id,
+        document_id=document_id,
+        key='1234',
+        filename='custom_file.pdf',
+    )
+
+
 def test_download_document_creates_link_to_actual_doc_from_api(client, mocker, sample_service):
     mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
     service_id = uuid4()
@@ -86,6 +112,40 @@ def test_download_document_creates_link_to_actual_doc_from_api(client, mocker, s
         service_id,
         document_id,
         key
+    )
+
+
+def test_download_document_creates_link_to_actual_doc_from_api_with_filename(
+    client,
+    mocker,
+    sample_service
+):
+    mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
+    service_id = uuid4()
+    document_id = uuid4()
+    key = '1234'
+    filename = 'custom_file.pdf'
+
+    response = client.get(
+        url_for(
+            'main.download_document',
+            service_id=service_id,
+            document_id=document_id,
+            key=key,
+            filename=filename
+        )
+    )
+
+    assert response.status_code == 200
+    page = BeautifulSoup(response.data.decode('utf-8'), 'html.parser')
+
+    assert page.select('main a')[0]['href'] == (
+        'http://test-doc-download-api/services/{}/documents/{}?key={}&filename={}'
+    ).format(
+        service_id,
+        document_id,
+        key,
+        filename,
     )
 
 
