@@ -41,7 +41,7 @@ class Test(Development):
     TESTING = True
 
     # used during tests as a domain name
-    SERVER_NAME = 'document-download-frontend'
+    SERVER_NAME = 'document-download-frontend.localdomain'
 
     API_HOST_NAME = 'http://test-notify-api'
     ADMIN_BASE_URL = 'http://test-notify-admin'
