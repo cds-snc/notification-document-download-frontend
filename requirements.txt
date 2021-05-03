@@ -9,7 +9,7 @@ gunicorn==20.0.4
 whitenoise==4.1.2  #manages static assets
 eventlet==0.28.0
 
-Babel==2.8.0
+Babel==2.9.1
 Flask-Babel==1.0.0
 python-dotenv==0.10.3
 notifications-python-client==5.5.1
