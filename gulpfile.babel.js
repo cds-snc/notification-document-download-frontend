@@ -6,21 +6,24 @@
 // 1. LIBRARIES
 // - - - - - - - - - - - - - - -
 import gulp from 'gulp';
+import gulpSass from "gulp-sass";
+import nodeSass from "node-sass"
 import loadPlugins from 'gulp-load-plugins';
 import stylish from 'jshint-stylish';
 
-const plugins = loadPlugins(),
+const sassPlugin = gulpSass(nodeSass);
+const plugins = loadPlugins();
 
 // 2. CONFIGURATION
 // - - - - - - - - - - - - - - -
-    paths = {
-        src: 'app/assets/',
-        dist: 'app/static/',
-        templates: 'app/templates/',
-        npm: 'node_modules/',
-        template: 'node_modules/@cdssnc/cds_template_jinja/',
-        toolkit: 'node_modules/govuk_frontend_toolkit/'
-    };
+const paths = {
+  src: 'app/assets/',
+  dist: 'app/static/',
+  templates: 'app/templates/',
+  npm: 'node_modules/',
+  template: 'node_modules/@cdssnc/cds_template_jinja/',
+  toolkit: 'node_modules/govuk_frontend_toolkit/'
+};
 
 // 3. TASKS
 // - - - - - - - - - - - - - - -
@@ -32,10 +35,10 @@ gulp.task('copy:notification_template:template', () => gulp.src(paths.template +
 );
 
 gulp.task('copy:notification_template:css', () => gulp.src(paths.template + 'assets/stylesheets/**/*.css')
-  .pipe(plugins.sass({
+  .pipe(sassPlugin({
     outputStyle: 'compressed'
   }))
-  .on('error', plugins.sass.logError)
+  .on('error', sassPlugin.logError)
   .pipe(plugins.cssUrlAdjuster({
     prependRelative: '/static/',
   }))
@@ -58,7 +61,7 @@ gulp.task('copy:notification_template:fonts', () => gulp.src(paths.template + 'a
 gulp.task('sass', () => gulp
   .src(paths.src + '/stylesheets/main*.scss')
   .pipe(plugins.prettyerror())
-  .pipe(plugins.sass({
+  .pipe(sassPlugin({
     outputStyle: 'compressed',
     includePaths: [
       paths.npm + 'govuk-elements-sass/public/sass/',
