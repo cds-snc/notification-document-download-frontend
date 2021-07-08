@@ -1,5 +1,5 @@
 import re
-from urllib.parse import urlparse
+from urllib.parse import urlencode, urlparse
 
 from flask import current_app
 from notifications_utils.recipients import EMAIL_REGEX_PATTERN
@@ -24,3 +24,18 @@ def assess_contact_type(service_contact_info):
         return "link"
     else:
         return "other"
+
+
+def download_link(service_id, document_id, key, filename):
+    query_params = urlencode({
+        k: v for k, v
+        in {'key': key, 'filename': filename}.items()
+        if v
+    })
+
+    return '{}/services/{}/documents/{}?{}'.format(
+        current_app.config['DOCUMENT_DOWNLOAD_API_HOST_NAME'],
+        service_id,
+        document_id,
+        query_params,
+    )
