@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 from flask import url_for
 from notifications_python_client.errors import HTTPError
 
+from tests.conftest import skip_if_direct_download
+
 
 def test_status(client):
     response = client.get(url_for('main.status'))
@@ -25,6 +27,51 @@ def test_landing_page_404s_if_no_key_in_query_string(client):
     assert response.status_code == 404
 
 
+def test_landing_redirects_to_download_file(client):
+    service_id = uuid4()
+    document_id = uuid4()
+    key = '1234'
+    filename = "file.pdf"
+
+    response = client.get(
+        url_for(
+            'main.landing',
+            service_id=service_id,
+            document_id=document_id,
+            key=key,
+            filename=filename,
+        )
+    )
+    assert response.status_code == 302
+    assert response.headers['X-Robots-Tag'] == 'noindex, nofollow'
+    expected_url = (
+        f"http://test-doc-download-api/services/{service_id}/documents/{document_id}?key={key}&filename={filename}"
+    )
+    assert response.location == expected_url
+
+
+def test_landing_redirects_to_download_file_no_filename(client):
+    service_id = uuid4()
+    document_id = uuid4()
+    key = '1234'
+
+    response = client.get(
+        url_for(
+            'main.landing',
+            service_id=service_id,
+            document_id=document_id,
+            key=key,
+        )
+    )
+    assert response.status_code == 302
+    assert response.headers['X-Robots-Tag'] == 'noindex, nofollow'
+    expected_url = (
+        f"http://test-doc-download-api/services/{service_id}/documents/{document_id}?key={key}"
+    )
+    assert response.location == expected_url
+
+
+@skip_if_direct_download
 def test_landing_page_notifications_api_error(client, mocker, sample_service):
     mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
     mocker.patch('app.service_api_client.get_service', side_effect=HTTPError(response=Mock(status_code=404)))
@@ -40,6 +87,7 @@ def test_landing_page_notifications_api_error(client, mocker, sample_service):
     assert response.status_code == 404
 
 
+@skip_if_direct_download
 def test_landing_page_creates_link_for_document(client, mocker, sample_service):
     mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
     service_id = uuid4()
@@ -64,6 +112,34 @@ def test_landing_page_creates_link_for_document(client, mocker, sample_service):
     )
 
 
+@skip_if_direct_download
+def test_landing_page_creates_link_for_document_with_filename(client, mocker, sample_service):
+    mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
+    service_id = uuid4()
+    document_id = uuid4()
+    response = client.get(
+        url_for(
+            'main.landing',
+            service_id=service_id,
+            document_id=document_id,
+            key='1234',
+            filename='custom_file.pdf',
+        )
+    )
+
+    assert response.status_code == 200
+    page = BeautifulSoup(response.data.decode('utf-8'), 'html.parser')
+
+    assert page.find('a', string="Continue")['href'] == url_for(
+        'main.download_document',
+        service_id=service_id,
+        document_id=document_id,
+        key='1234',
+        filename='custom_file.pdf',
+    )
+
+
+@skip_if_direct_download
 def test_download_document_creates_link_to_actual_doc_from_api(client, mocker, sample_service):
     mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
     service_id = uuid4()
@@ -89,6 +165,42 @@ def test_download_document_creates_link_to_actual_doc_from_api(client, mocker, s
     )
 
 
+@skip_if_direct_download
+def test_download_document_creates_link_to_actual_doc_from_api_with_filename(
+    client,
+    mocker,
+    sample_service
+):
+    mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
+    service_id = uuid4()
+    document_id = uuid4()
+    key = '1234'
+    filename = 'custom_file.pdf'
+
+    response = client.get(
+        url_for(
+            'main.download_document',
+            service_id=service_id,
+            document_id=document_id,
+            key=key,
+            filename=filename
+        )
+    )
+
+    assert response.status_code == 200
+    page = BeautifulSoup(response.data.decode('utf-8'), 'html.parser')
+
+    assert page.select('main a')[0]['href'] == (
+        'http://test-doc-download-api/services/{}/documents/{}?key={}&filename={}'
+    ).format(
+        service_id,
+        document_id,
+        key,
+        filename,
+    )
+
+
+@skip_if_direct_download
 def test_download_document_shows_contact_information(client, mocker, sample_service):
     mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
     service_id = uuid4()
@@ -112,6 +224,7 @@ def test_download_document_shows_contact_information(client, mocker, sample_serv
     assert contact_link['href'] == 'https://sample-service.gov.uk'
 
 
+@skip_if_direct_download
 @pytest.mark.parametrize('view', ['main.landing', 'main.download_document'])
 def test_pages_are_not_indexed(view, client, mocker, sample_service):
     mocker.patch('app.service_api_client.get_service', return_value={'data': sample_service})
@@ -132,6 +245,7 @@ def test_pages_are_not_indexed(view, client, mocker, sample_service):
     assert response.headers['X-Robots-Tag'] == 'noindex, nofollow'
 
 
+@skip_if_direct_download
 @pytest.mark.parametrize('contact_info,type,expected_result', [
     ('https://sample-service.gov.uk', 'link', 'https://sample-service.gov.uk'),
     ('info@sample-service.gov.uk', 'email', 'mailto:info@sample-service.gov.uk'),
