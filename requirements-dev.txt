@@ -15,3 +15,5 @@ coveralls==1.8.0
 jinja2-cli[yaml]==0.7.0
 
 beautifulsoup4==4.7.1
+
+urllib3>=1.25.9 # not directly required, pinned by Snyk to avoid a vulnerability
