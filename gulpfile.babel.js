@@ -101,7 +101,6 @@ gulp.task('lint:sass', () => gulp
     paths.src + 'stylesheets/views/*.scss',
   ])
     .pipe(plugins.sassLint())
-    .pipe(plugins.sassLint.format(stylish))
     .pipe(plugins.sassLint.failOnError())
 );
 
