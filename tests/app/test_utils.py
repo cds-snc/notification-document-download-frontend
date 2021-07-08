@@ -1,6 +1,8 @@
+from uuid import uuid4
+
 import pytest
 
-from app.utils import assess_contact_type, get_cdn_domain
+from app.utils import assess_contact_type, download_link, get_cdn_domain
 
 
 def test_get_cdn_domain_on_localhost(client, mocker):
@@ -30,3 +32,25 @@ def test_get_cdn_domain_on_non_localhost(client, mocker):
 )
 def test_assess_contact_type_recognises_email_phone_and_link(contact_info, expected_result):
     assert assess_contact_type(contact_info) == expected_result
+
+
+def test_download_link(client):
+    service_id = uuid4()
+    document_id = uuid4()
+    key = '1234'
+    filename = 'filename.pdf'
+    expected_url = (
+        f"http://test-doc-download-api/services/{service_id}/documents/{document_id}?key={key}&filename={filename}"
+    )
+    assert download_link(service_id, document_id, key, filename) == expected_url
+
+
+def test_download_link_no_filename(client):
+    service_id = uuid4()
+    document_id = uuid4()
+    key = '1234'
+    filename = None
+    expected_url = (
+        f"http://test-doc-download-api/services/{service_id}/documents/{document_id}?key={key}"
+    )
+    assert download_link(service_id, document_id, key, filename) == expected_url

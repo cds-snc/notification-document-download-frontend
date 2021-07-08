@@ -1,11 +1,11 @@
 from urllib.parse import urlencode
 
-from flask import abort, current_app, render_template, request
+from flask import abort, current_app, redirect, render_template, request
 from notifications_python_client.errors import HTTPError
 
 from app import service_api_client
 from app.main import main
-from app.utils import assess_contact_type
+from app.utils import assess_contact_type, download_link
 
 
 @main.route('/_status')
@@ -18,6 +18,18 @@ def landing(service_id, document_id):
     key = request.args.get('key', None)
     if not key:
         abort(404)
+
+    filename = request.args.get('filename')
+
+    return redirect(
+        download_link(
+            service_id,
+            document_id,
+            key,
+            filename
+        ),
+        code=302
+    )
 
     try:
         service = service_api_client.get_service(service_id)

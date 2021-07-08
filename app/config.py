@@ -17,6 +17,7 @@ class Config(object):
     CHECK_PROXY_HEADER = os.environ.get('CHECK_PROXY_HEADER', False)
 
     # Logging
+    NOTIFY_ENVIRONMENT = os.environ.get("NOTIFY_ENVIRONMENT")
     DEBUG = os.environ.get('DEBUG', False)
 
     DOCUMENT_DOWNLOAD_API_HOST_NAME = os.environ.get('DOCUMENT_DOWNLOAD_API_HOST_NAME', 'http://localhost:7000')
@@ -41,7 +42,7 @@ class Test(Development):
     TESTING = True
 
     # used during tests as a domain name
-    SERVER_NAME = 'document-download-frontend'
+    SERVER_NAME = 'document-download-frontend.localdomain'
 
     API_HOST_NAME = 'http://test-notify-api'
     ADMIN_BASE_URL = 'http://test-notify-admin'
@@ -53,8 +54,13 @@ class Production(Config):
     HTTP_PROTOCOL = 'https'
 
 
+class Staging(Production):
+    pass
+
+
 configs = {
     'development': Development,
     'test': Test,
+    'staging': Staging,
     'production': Production,
 }

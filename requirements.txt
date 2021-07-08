@@ -7,17 +7,19 @@ Flask-WTF==0.14.3
 
 gunicorn==20.0.4
 whitenoise==4.1.2  #manages static assets
-eventlet==0.28.0
+eventlet==0.31.0
 
-Babel==2.8.0
+Babel==2.9.1
 Flask-Babel==1.0.0
 python-dotenv==0.10.3
 notifications-python-client==5.5.1
 
 # PaaS
-awscli-cwlogs>=1.4,<1.5
+awscli-cwlogs>=1.4.6,<1.5
 
 git+https://github.com/cds-snc/notifier-utils.git@43.2.2#egg=notifications-utils
+
+rsa>=4.1 # not directly required, pinned by Snyk to avoid a vulnerability
 
 ## The following requirements were added by pip freeze:
 awscli==1.18.188
@@ -25,28 +27,28 @@ bleach==3.2.1
 boto3==1.16.28
 botocore==1.19.28
 cachetools==4.1.1
-certifi==2020.12.5
+certifi==2021.5.30
 chardet==3.0.4
-click==7.1.2
+click==8.0.1
 colorama==0.4.3
 dnspython==1.16.0
 docopt==0.6.2
 docutils==0.15.2
 flask-redis==0.4.0
 future==0.18.2
-greenlet==0.4.17
+greenlet==1.1.0
 idna==2.10
-itsdangerous==1.1.0
+itsdangerous==2.0.1
 Jinja2==2.11.2
 jmespath==0.10.0
-MarkupSafe==1.1.1
+MarkupSafe==2.0.1
 mistune==0.8.4
 monotonic==1.5
 orderedset==2.0.3
-packaging==20.7
+packaging==21.0
 phonenumbers==8.12.12
 pyasn1==0.4.8
-PyJWT==1.7.1
+PyJWT==2.1.0
 pyparsing==2.4.7
 PyPDF2==1.26.0
 python-dateutil==2.8.1
@@ -55,12 +57,11 @@ pytz==2020.4
 PyYAML==5.3.1
 redis==3.5.3
 requests==2.25.0
-rsa==4.5
-s3transfer==0.3.3
-six==1.15.0
+s3transfer==0.3.7
+six==1.16.0
 smartypants==2.0.1
 statsd==3.3.0
-urllib3==1.26.2
+urllib3==1.26.6
 webencodings==0.5.1
-Werkzeug==1.0.1
+Werkzeug==2.0.1
 WTForms==2.3.3

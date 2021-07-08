@@ -3,6 +3,13 @@ from flask import Flask
 
 from app import create_app
 
+FEATURE_REDIRECT_TO_FILE = True
+
+skip_if_direct_download = pytest.mark.skipif(
+    FEATURE_REDIRECT_TO_FILE,
+    reason="Redirecting directly to file"
+)
+
 
 @pytest.fixture
 def app_(request):
