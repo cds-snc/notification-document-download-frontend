@@ -20,7 +20,7 @@ jobs:
       run: |
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         unzip -q awscliv2.zip
-        sudo ./aws/install
+        sudo ./aws/install --update
         aws --version
     - name: Install kubectl
       run: |
@@ -58,3 +58,14 @@ jobs:
     - uses: cds-snc/notification-pr-bot@master
       env:
         TOKEN: ${{ secrets.PR_BOT_TOKEN }}
+
+    - name: my-app-install token
+      id: notify-pr-bot
+      uses: getsentry/action-github-app-token@v1
+      with:
+        app_id: ${{ secrets.PRBOT_APP_ID }}
+        private_key: ${{ secrets.PRBOT_PRIVATE_KEY }}
+
+    - uses: cds-snc/notification-pr-bot@master
+      env:
+        TOKEN: ${{ steps.notify-pr-bot.outputs.token }}
