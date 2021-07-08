@@ -19,6 +19,8 @@ awscli-cwlogs>=1.4.6,<1.5
 
 git+https://github.com/cds-snc/notifier-utils.git@43.2.2#egg=notifications-utils
 
+rsa>=4.1 # not directly required, pinned by Snyk to avoid a vulnerability
+
 ## The following requirements were added by pip freeze:
 awscli==1.18.188
 bleach==3.2.1
@@ -55,7 +57,6 @@ pytz==2020.4
 PyYAML==5.3.1
 redis==3.5.3
 requests==2.25.0
-rsa==4.5
 s3transfer==0.3.7
 six==1.16.0
 smartypants==2.0.1
