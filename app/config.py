@@ -17,6 +17,7 @@ class Config(object):
     CHECK_PROXY_HEADER = os.environ.get('CHECK_PROXY_HEADER', False)
 
     # Logging
+    NOTIFY_ENVIRONMENT = os.environ.get("NOTIFY_ENVIRONMENT")
     DEBUG = os.environ.get('DEBUG', False)
 
     DOCUMENT_DOWNLOAD_API_HOST_NAME = os.environ.get('DOCUMENT_DOWNLOAD_API_HOST_NAME', 'http://localhost:7000')
@@ -53,8 +54,13 @@ class Production(Config):
     HTTP_PROTOCOL = 'https'
 
 
+class Staging(Production):
+    pass
+
+
 configs = {
     'development': Development,
     'test': Test,
+    'staging': Staging,
     'production': Production,
 }
