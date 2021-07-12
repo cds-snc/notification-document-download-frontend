@@ -8,7 +8,7 @@ Flask-WTF==0.14.3
 
 gunicorn==20.0.4
 whitenoise==4.1.2  #manages static assets
-eventlet==0.31.0
+eventlet==0.30.2
 
 Babel==2.9.1
 Flask-Babel==1.0.0
