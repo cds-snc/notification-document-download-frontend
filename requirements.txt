@@ -65,4 +65,4 @@ statsd==3.3.0
 urllib3==1.26.6
 webencodings==0.5.1
 Werkzeug==2.0.1
-WTForms==2.3.3
+WTForms==3.0.0a1
