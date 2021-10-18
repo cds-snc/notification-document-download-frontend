@@ -16,7 +16,7 @@ COPY . /app
 
 RUN set -ex && pip3 install -r requirements.txt
 
-RUN npm install
+RUN npm ci
 
 RUN npm rebuild node-sass
 
