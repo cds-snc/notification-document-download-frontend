@@ -1,3 +1,8 @@
+
+**The document-download-frontend app has been removed from GC Notify.**
+
+Consequently we have archived this repository.
+
 # document-download-frontend
 GOV.UK Notify Document Download frontend user application
 
